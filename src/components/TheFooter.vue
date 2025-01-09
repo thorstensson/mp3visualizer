@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TheHeaderFooterSlot from '@/components/TheHeaderFooterSlot.vue'
-import MinimlAudioPlayer from '@/components/MinimlAudioPlayer.vue'
+import CompactAudioPlayer from '@/components/CompactAudioPlayer.vue'
 </script>
 
 <template>
@@ -11,7 +11,7 @@ import MinimlAudioPlayer from '@/components/MinimlAudioPlayer.vue'
         <a target='_blank' href='https://www.flickr.com/photos/thomasthorstensson/'>Flickr</a>
       </template>
       <template #player>
-        <MinimlAudioPlayer />
+        <CompactAudioPlayer />
       </template>
     </TheHeaderFooterSlot>
   </div>
