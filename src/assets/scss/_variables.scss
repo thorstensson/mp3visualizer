@@ -1,0 +1,30 @@
+/* My Earth II palette (Coloors)*/
+$clr-primary: #000814; // bg
+$clr-secondary: #f8f9fa; // font
+$clr-tertiary: #576f72;
+$clr-quarternary: #72983c;
+$clr-quinary: #67d360;
+
+/* Variable font paragraphs and headings */
+$sans-text: "Plus Jakarta Sans", serif;
+$sans-text-optic:auto;
+
+$sans-ui: "DM Sans", serif;
+$sans-ui-optic:auto;
+
+/* Sizes, might get away with font clamp mixin for most body stuff though */
+$h1: 80px;
+$h1-lg: 100px;
+$h1-xl: 140px;
+$h1-xxl: 160px;
+
+/* Padding */
+$page-lpad: 20px;
+$page-lpad-lg: 60px;
+$page-lpad-xl: 60px;
+$page-lpad-xxl: 70px;
+
+$page-rpad: 20px;
+$page-rpad-lg: 300px;
+$page-rpad-xl: 300px;
+$page-rpad-xxl: 460px;
