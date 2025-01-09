@@ -8,7 +8,7 @@
 
 # Audio Player - Vue - TS - Web Audio API
 
-Here is the compact version of the mp3 Player that I first posted @ https://github.com/thorstensson/audio-player-vue-ts. Made for the footer, this versions measures only 70 pixels tall :zap:
+Here is the compact version of the mp3 Player that I first posted @ https://github.com/thorstensson/audio-player-vue-ts. Made for the footer, this version measures only 70 pixels tall :zap:
 
 In the code, I have cleaned up my back and forth on semicolons. Next, to clean up the other player.
 On the roadmap for both: add info message if no mp3 format or audio context in user's browser.
