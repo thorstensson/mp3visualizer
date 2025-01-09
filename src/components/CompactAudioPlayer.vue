@@ -260,6 +260,7 @@ body {
     width: 160px;
     padding: 0 5px 0 5px;
     overflow: hidden;
+    user-select: none;
 
     &__track {
       white-space: nowrap;
@@ -280,6 +281,7 @@ body {
   height: inherit;
   width: inherit;
   color: #f8f9fa;
+  user-select: none;
 
   &__current {
     position: absolute;
