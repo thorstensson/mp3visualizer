@@ -361,7 +361,7 @@ body {
     opacity: 0;
     transition: opacity 0.3s ease-in;
     user-select: none;
-    color:$clr-primary;
+    color:$clr-secondary;
 
     &--show {
       opacity: 1;
