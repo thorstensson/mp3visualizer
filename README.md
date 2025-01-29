@@ -1,6 +1,3 @@
-![audiocompact](https://github.com/user-attachments/assets/858baef1-026a-4ba9-95f7-7a608855e834)
-
-
 ![Static Badge](https://img.shields.io/badge/Vue-3.5.13-green) 
 
 ![Static Badge](https://img.shields.io/badge/Typescript-5.6.3-navy)
