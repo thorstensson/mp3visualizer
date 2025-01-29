@@ -16,8 +16,7 @@ const slots = useSlots()
 <style scoped lang="scss">
 .social {
   font-family: $sans-text;
-  font-optical-sizing: $sans-ui-optic;
   font-size: 16px;
-  color: $clr-secondary;
+  color: $secondary;
 }
 </style>

@@ -1,8 +1,6 @@
 <script setup lang="ts">
-//TODO: There needs be some error handling messaging in both components if no mp3 or audio context.
-import { ref, useTemplateRef, reactive, watch, onMounted, computed } from 'vue'
 import { useEventListener, type MaybeRef } from '@vueuse/core'
-import { gsap } from 'gsap'
+import { ref, useTemplateRef, reactive, onMounted, computed } from 'vue'
 import {
   PlayIcon,
   PauseIcon,
@@ -10,12 +8,11 @@ import {
   ChevronLeftIcon,
 } from '@heroicons/vue/24/solid'
 
-import MinimlSpectrumVisualizer from './MinimlSpectrumVisualizer.vue'
+import AudioVisualizer from './AudioVisualizer.vue'
 import { useStoreRef } from '@/composable/useStoreRef'
 
 const spectrum = useTemplateRef('spectrum')
 const audioEl = useTemplateRef('audio-element')
-const panelTrack = useTemplateRef('panel-track')
 
 const trackTime = ref<string>("00:00")
 const trackDuration = ref<string>("00.00")
@@ -23,11 +20,8 @@ const trackIndex = ref<number>(0)
 const currentTrack = ref<string>("")
 const isPlaying = ref<boolean>(false)
 
-// Add mp3 path here, note if you are testing on Vite with localhost metadata events wont fire (next , previous)
-const PATH = "https://audio-tt.s3.amazonaws.com"
+const PATH = import.meta.env.VITE_MP3_URL
 
-// The panel width, if track text wider then GSAP yoyo
-const TRACK_WIDTH = 160
 
 //Add tracks here; no plans to make a DOM playlist
 const playlist = reactive([
@@ -107,6 +101,7 @@ const timeUpdate = () => {
   setTimes()
 }
 
+// Times, leaving this in, in case you want to use
 const setTimes = () => {
   const m = ('0' + Math.floor((audioEl.value!.currentTime / 60) % 60)).slice(
     -2
@@ -115,7 +110,7 @@ const setTimes = () => {
   trackTime.value = `${m}:${s}`
 }
 
-// E from v-on listener
+// E from v-on listener, leaving this in, in case you want to use
 const durationUpdate = () => {
   const m = ("0" + Math.floor((audioEl.value!.duration / 60) % 60)).slice(-2)
   const s = ("0" + Math.floor(audioEl.value!.duration % 60)).slice(-2)
@@ -134,38 +129,6 @@ const onTrackEnded = () => {
     currentTrack.value = currTrack.value
   }
 }
-
-// GSAP, yoyo text left to right if title wider than display
-watch(
-  [isPlaying, trackIndex],
-  () => {
-    const { width } = panelTrack.value?.getBoundingClientRect() || {}
-    const trackAnim = gsap.timeline()
-    if (isPlaying.value && width && width > TRACK_WIDTH) {
-      const remWidth = width - TRACK_WIDTH + 10
-      trackAnim.fromTo(
-        ".panel__box__track",
-        { x: 0 },
-        {
-          duration: width / 100,
-          x: -remWidth,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        }
-      )
-    } else {
-      trackAnim.to(".panel__box__track", {
-        x: -3,
-        duration: 1,
-        ease: "sine.inOut",
-        overwrite: "auto",
-      })
-    }
-  },
-  { flush: "post" }
-)
-
 onMounted(() => {
   const { addElem } = useStoreRef()
   addElem("audioEl", audioEl)
@@ -175,28 +138,10 @@ onMounted(() => {
 
 <template>
   <div class="player-wrapper">
-    <audio :src="`${PATH}/${currentTrack}`" type="audio/mp3" preload="auto" v-on:timeupdate="timeUpdate"
+    <audio type="audio/mp3" :src="`${PATH}/${currentTrack}`" preload="auto" v-on:timeupdate="timeUpdate"
       v-on:durationchange="durationUpdate" v-on:ended="onTrackEnded" ref="audio-element"
       crossorigin="anonymous"></audio>
-    <div class="panel">
-      <div class="panel__box">
-        <div :class="{ 'panel__box__track--paused': !isPlaying }" class="panel__box__track" ref="panel-track">
-          {{ currentTrack }}
-        </div>
-      </div>
-    </div>
-    <div class="time">
-      <div class="time__current" ref="track-time">
-        {{ trackTime }}
-      </div>
-      <div class="time__duration" ref="track-duration">
-        {{ trackDuration }}
-      </div>
-    </div>
     <div class="controls">
-      <div class="controls__pause-txt" :class="{ 'controls__pause-txt--show': !isPlaying }">
-        -PAUSE-
-      </div>
       <PlayIcon @click="togglePlay" class="controls__play" :class="{ 'controls__play--show': !isPlaying }" />
       <PauseIcon @click="togglePlay" class="controls__pause" :class="{ 'controls__pause--show': isPlaying }" />
       <ChevronLeftIcon @click="prevTrack" class="controls__prev" :class="{ 'controls__prev--end': !ifTrackPrev }">
@@ -205,26 +150,12 @@ onMounted(() => {
       </ChevronRightIcon>
     </div>
     <div v-if="audioEl">
-      <MinimlSpectrumVisualizer ref="spectrum" />
+      <AudioVisualizer ref="spectrum" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/**
- * Please note that I use a variable Typekit font, update SCSS files as you need *
- */
-
-.currstate {
-  color: white;
-  position: fixed;
-  width: 100px;
-  top: 100px;
-  left: 0px;
-  z-index: 900;
-  font-size: 20px;
-}
-
 body {
   -webkit-overflow-scrolling: none;
   overflow: hidden;
@@ -238,64 +169,14 @@ body {
   -webkit-overflow-scrolling: none;
   overflow: hidden;
   overscroll-behavior: none;
+  text-transform: uppercase;
 }
 
 .player-wrapper * {
+  font-display: fallback;
   font-family: $sans-ui;
-  font-optical-sizing: $sans-ui-optic;
   font-size: 12px;
   font-weight: 250;
-}
-
-.panel {
-  color: $clr-secondary;
-  height: 100%;
-  //border: 1px solid white;
-
-  &__box {
-    position: absolute;
-    left: 40px;
-    bottom: 4px;
-    height: 14px;
-    width: 160px;
-    padding: 0 5px 0 5px;
-    overflow: hidden;
-    user-select: none;
-
-    &__track {
-      white-space: nowrap;
-      text-align: center;
-      width: fit-content;
-      margin: auto;
-    }
-
-    &__track--paused {
-      color: $clr-secondary;
-    }
-  }
-}
-
-.time {
-  position: absolute;
-  top: 0;
-  height: inherit;
-  width: inherit;
-  color: #f8f9fa;
-  user-select: none;
-
-  &__current {
-    position: absolute;
-    left: 3px;
-    bottom: 2px;
-    text-align: right;
-  }
-
-  &__duration {
-    position: absolute;
-    right: 2px;
-    bottom: 2px;
-    text-align: left;
-  }
 }
 
 .controls {
@@ -305,14 +186,16 @@ body {
   width: inherit;
   text-align: center;
 
+
   &__play,
   &__pause {
     position: absolute;
     display: none;
     width: 34px;
     height: auto;
-    right: 0px;
-    bottom: 18px;
+    /*compensate for svg block*/
+    right: -5px;
+    bottom: -3px;
     color: #f8f9fa;
     cursor: pointer;
     transition: color 0.3s ease-in-out;
@@ -323,10 +206,8 @@ body {
   }
 
   &__play:hover,
-  &__play:focus,
-  &__pause:hover,
-  &__pause:active {
-    color: $clr-tertiary;
+  &__pause:hover {
+    color: $accent;
   }
 
   &__prev,
@@ -334,9 +215,9 @@ body {
     position: absolute;
     width: 30px;
     height: auto;
-    right: 54px;
-    bottom: 20px;
-    color: #f8f9fa;
+    right: 44px;
+    bottom: -2px;
+    color: $secondary;
     cursor: pointer;
     transition: color 0.3s ease-in-out;
 
@@ -346,28 +227,12 @@ body {
   }
 
   &__next {
-    right: 35px;
+    right: 24px;
   }
 
   &__next:hover,
-  &__next:focus,
-  &__prev:hover,
-  &__prev:active {
-    color: $clr-tertiary;
-  }
-
-  &__pause-txt {
-    position: relative;
-    top: 30px;
-    right: 25px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in;
-    user-select: none;
-    color: $clr-secondary;
-
-    &--show {
-      opacity: 1;
-    }
+  &__prev:focus {
+    color: $accent;
   }
 }
 </style>

@@ -9,7 +9,7 @@ import DemoPage from '@/views/DemoPage.vue';
 <style lang="scss">
 html,
 body {
-  background-color: $clr-primary;
+  background-color: $primary;
   margin: 0;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;

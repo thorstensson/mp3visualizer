@@ -3,6 +3,7 @@ import { ref, useTemplateRef, onMounted } from 'vue'
 import { useEventListener } from '@vueuse/core'
 import { useStoreRef } from '@/composable/useStoreRef'
 
+
 const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
 const analyser = ref<AnalyserNode>()
 
@@ -28,7 +29,7 @@ const createAnalyserData = () => {
     analyser.value = audioCtx.createAnalyser()
     audioSrc.connect(analyser.value)
     analyser.value.connect(audioCtx.destination)
-    analyser.value.fftSize = 128
+    analyser.value.fftSize = 64
 
     bufferLength = analyser.value.frequencyBinCount
     dataArray = new Uint8Array(bufferLength)
@@ -37,11 +38,12 @@ const createAnalyserData = () => {
     if (audioCtx.state === 'suspended') {
         audioCtx.resume()
     }
-    barWidth = (canvas.value!.width / bufferLength)
+    barWidth = 10
+
 }
 
 /**
- * MDN: The getByteFrequencyData() method of the AnalyserNode interface copies 
+ * MDN: The getByteFrequencyData() method of the AnalyserNode interface copies
  * the current frequency data into a Uint8Array (unsigned byte array) passed into it.
  * The frequency data is composed of integers on a scale from 0 to 255.
  * Each item in the array represents the decibel value for a specific frequency.
@@ -55,9 +57,9 @@ const startAnimRequest = () => {
             analyser.value?.getByteFrequencyData(dataArray)
             for (let i = 0; i < bufferLength; i++) {
                 const barHeight = dataArray[i]
-                ctx.fillStyle = "#FFFFFF"
+                ctx.fillStyle = "#65fbd2"
                 ctx.fillRect(x, canvas.value.height - barHeight, barWidth, barHeight)
-                x += barWidth + 1
+                x += barWidth
             }
         }
         myReq = requestAnimationFrame(doBars)
@@ -94,11 +96,13 @@ onMounted(() => {
 
 <style scoped lang="scss">
 #canvas {
-    bottom: 20px;
+    bottom: 0px;
     position: absolute;
-    width: 145px;
+    width: 100px;
     height: 25px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
     user-select: none;
-    left: 5px;
+    right: 70px;
 }
 </style>

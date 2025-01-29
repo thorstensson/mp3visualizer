@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import TheHeaderFooterSlot from '@/components/TheHeaderFooterSlot.vue'
-import CompactAudioPlayer from '@/components/CompactAudioPlayer.vue'
+import AudioPlayer from '@/components/AudioPlayer.vue'
 </script>
 
 <template>
   <div class="footer-wrapper">
     <TheHeaderFooterSlot>
       <template #social>
-        <a target='_blank' href='https://www.linkedin.com/in/thomasthorstensson'>Discord</a><br>
-        <a target='_blank' href='https://www.flickr.com/photos/thomasthorstensson/'>Flickr</a>
+       Footer
       </template>
       <template #player>
-        <CompactAudioPlayer />
+        <AudioPlayer />
       </template>
     </TheHeaderFooterSlot>
   </div>
@@ -23,6 +22,6 @@ import CompactAudioPlayer from '@/components/CompactAudioPlayer.vue'
   align-items: flex-end;
   justify-content: space-between;
   height: 100px;
-  padding: 0 $page-lpad 10px $page-lpad;
+  padding: 0 $page-hpad $page-vpad $page-hpad;
 }
 </style>
