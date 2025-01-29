@@ -23,22 +23,22 @@ const { sRef: audioEl } = getElem('audioEl')
  * to the AudioContext sampleRate.
  */
 const createAnalyserData = () => {
-    audioCtx = new AudioContext()
-    const audioSrc = audioCtx.createMediaElementSource(audioEl.value as HTMLMediaElement)
+  audioCtx = new AudioContext()
+  const audioSrc = audioCtx.createMediaElementSource(audioEl.value as HTMLMediaElement)
 
-    analyser.value = audioCtx.createAnalyser()
-    audioSrc.connect(analyser.value)
-    analyser.value.connect(audioCtx.destination)
-    analyser.value.fftSize = 64
+  analyser.value = audioCtx.createAnalyser()
+  audioSrc.connect(analyser.value)
+  analyser.value.connect(audioCtx.destination)
+  analyser.value.fftSize = 64
 
-    bufferLength = analyser.value.frequencyBinCount
-    dataArray = new Uint8Array(bufferLength)
+  bufferLength = analyser.value.frequencyBinCount
+  dataArray = new Uint8Array(bufferLength)
 
 
-    if (audioCtx.state === 'suspended') {
-        audioCtx.resume()
-    }
-    barWidth = 10
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume()
+  }
+  barWidth = 10
 
 }
 
@@ -50,59 +50,59 @@ const createAnalyserData = () => {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteFrequencyData|MDN}
  */
 const startAnimRequest = () => {
-    function doBars() {
-        let x = 0
-        if (canvas.value && ctx) {
-            ctx.clearRect(0, 0, canvas.value.width, canvas.value.height)
-            analyser.value?.getByteFrequencyData(dataArray)
-            for (let i = 0; i < bufferLength; i++) {
-                const barHeight = dataArray[i]
-                ctx.fillStyle = "#65fbd2"
-                ctx.fillRect(x, canvas.value.height - barHeight, barWidth, barHeight)
-                x += barWidth
-            }
-        }
-        myReq = requestAnimationFrame(doBars)
+  function draw() {
+    let x = 5
+    if (canvas.value && ctx) {
+      ctx.clearRect(0, 0, canvas.value.width, canvas.value.height)
+      analyser.value?.getByteFrequencyData(dataArray)
+      for (let i = 0; i < bufferLength; i++) {
+        const barHeight = dataArray[i]
+        ctx.fillStyle = `rgb(${barHeight + 100} 200 150)`;
+        ctx.fillRect(x, canvas.value.height - barHeight, barWidth, barHeight)
+        x += barWidth +1
+      }
     }
-    myReq = requestAnimationFrame(doBars)
+    myReq = requestAnimationFrame(draw)
+  }
+  draw()
 }
 
 const cancelAnimRequest = () => {
-    setTimeout(() => {
-        cancelAnimationFrame(myReq)
-    }, 800)
+  setTimeout(() => {
+    cancelAnimationFrame(myReq)
+  }, 800)
 }
 
 onMounted(() => {
-    if (canvas.value) ctx = canvas.value.getContext('2d')!
+  if (canvas.value) ctx = canvas.value.getContext('2d')!
 
-    audioEl.value?.addEventListener('playing', startAnimRequest)
-    audioEl.value?.addEventListener('paused', cancelAnimRequest)
+  audioEl.value?.addEventListener('playing', startAnimRequest)
+  audioEl.value?.addEventListener('paused', cancelAnimRequest)
 
-    // One time event to create onetime AudioContext
-    const cleanup = useEventListener(document, 'mousedown', () => {
-        cleanup()
-        createAnalyserData()
-    })
+  // One time event to create onetime AudioContext
+  const cleanup = useEventListener(document, 'mousedown', () => {
+    cleanup()
+    createAnalyserData()
+  })
 })
 
 </script>
 
 <template>
-    <div class="canvas-wrapper">
-        <canvas id="canvas" ref="canvas"></canvas>
-    </div>
+  <div class="canvas-wrapper">
+    <canvas id="canvas" ref="canvas"></canvas>
+  </div>
 </template>
 
 <style scoped lang="scss">
 #canvas {
-    bottom: 0px;
-    position: absolute;
-    width: 100px;
-    height: 25px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    right: 70px;
+  bottom: 0px;
+  position: absolute;
+  width: 100px;
+  height: 25px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  right: 58px;
 }
 </style>

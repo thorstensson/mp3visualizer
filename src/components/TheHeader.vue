@@ -6,7 +6,6 @@ import TheHeaderFooterSlot from '@/components/TheHeaderFooterSlot.vue'
   <div class="header-wrapper">
     <TheHeaderFooterSlot>
       <template #social>
-        Compact player demo
       </template>
     </TheHeaderFooterSlot>
   </div>

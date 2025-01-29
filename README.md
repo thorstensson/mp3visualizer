@@ -47,10 +47,6 @@ Start the server
   npm run dev
 ```
 
-#### The path to your tracks will then be: https://{YOUR BUCKET NAME}.amazonaws.com 
-
-Alternatively, research how to use a signed URL to protect access...
-
 ## Roadmap
 - [ ] Add messaging if no support for mp3 format | audio context.
 

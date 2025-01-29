@@ -191,14 +191,13 @@ body {
   &__pause {
     position: absolute;
     display: none;
-    width: 34px;
+    width: 24px;
     height: auto;
-    /*compensate for svg block*/
-    right: -5px;
-    bottom: -3px;
-    color: #f8f9fa;
+    right: -2px;
+    bottom: 0px;
+    color: $shade1;
     cursor: pointer;
-    transition: color 0.3s ease-in-out;
+    transition: color .3s ease-in-out;
 
     &--show {
       display: block;
@@ -213,13 +212,13 @@ body {
   &__prev,
   &__next {
     position: absolute;
-    width: 30px;
+    width: 21px;
     height: auto;
-    right: 44px;
-    bottom: -2px;
-    color: $secondary;
+    right: 34px;
+    bottom: 2px;
+    color: $shade1;
     cursor: pointer;
-    transition: color 0.3s ease-in-out;
+    transition: color .3s ease-in-out;
 
     &--end {
       opacity: 0.5;
@@ -227,7 +226,7 @@ body {
   }
 
   &__next {
-    right: 24px;
+    right: 20px;
   }
 
   &__next:hover,

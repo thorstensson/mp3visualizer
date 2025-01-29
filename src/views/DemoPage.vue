@@ -6,6 +6,7 @@ import TheHeader from '@/components/TheHeader.vue'
 <template>
     <TheHeader />
     <div class="landing-wrapper">
+      <div class="demo-txt">Audio.</div>
     </div>
     <TheFooter />
 </template>
@@ -14,5 +15,14 @@ import TheHeader from '@/components/TheHeader.vue'
 .landing-wrapper {
     display: flex;
     min-height: calc(100vh - 200px);
+    align-items: center;
+    justify-content: center;
+}
+
+.demo-txt {
+  color: white;
+  font-family: $sans-text;
+  font-size:100px;
+
 }
 </style>
