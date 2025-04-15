@@ -20,9 +20,10 @@ import TheHeader from '@/components/TheHeader.vue'
 }
 
 .demo-txt {
-  color: white;
+  color: $secondary;
   font-family: $sans-text;
   font-size:100px;
+  font-weight: 600;
 
 }
 </style>

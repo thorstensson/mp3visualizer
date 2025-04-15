@@ -6,13 +6,7 @@
 
 # Audio Player - Vue - TS - Web Audio API
 
-Here is the compact version of the mp3 player that I first posted @ https://github.com/thorstensson/audio-player-vue-ts. 
-
-This player uses a .env file for the URL (no longer on AWS). Thus, such .env vars are, of course, visible client-side, even if the .env file is not on GitHub.
-
-I might later on do a Nuxt version where audio is fetched server-side, but if you use AWS or some other host, I would recommend restricting the policy to the domain you own—if you don't want public access.
-
-For now have to get on with my portfolio and some other stuff coming on new repos in 2025 and leave audio as is, as it was not my intention to get so busy with audio in 2025, albeit fun!
+Here is the compact version of the mp3 player that I first posted @ https://github.com/thorstensson/audio-player-vue-ts :penguin:
 
 ## Demo
 
@@ -43,10 +37,6 @@ Start the server
 ```bash
   npm run dev
 ```
-
-## Roadmap
-- [ ] Add messaging if no support for mp3 format | audio context.
-
 ## Contributing
 
 Contributions are always welcome!

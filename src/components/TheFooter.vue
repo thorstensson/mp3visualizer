@@ -7,7 +7,7 @@ import AudioPlayer from '@/components/AudioPlayer.vue'
   <div class="footer-wrapper">
     <TheHeaderFooterSlot>
       <template #social>
-       Footer
+       Thomas Thorstensson
       </template>
       <template #player>
         <AudioPlayer />
@@ -23,5 +23,7 @@ import AudioPlayer from '@/components/AudioPlayer.vue'
   justify-content: space-between;
   height: 100px;
   padding: 0 $page-hpad $page-vpad $page-hpad;
+  font-family: $sans-text;
+  font-weight: 500;
 }
 </style>
