@@ -13,7 +13,7 @@ const slots = useSlots();
 <style scoped lang="scss">
 .social {
   font-family: $sans-text;
-  font-size: 16px;
+  font-size: clamp-calc(480px, 1920px, 12px,16px);
   color: $accent2;
   user-select: none;
 }
