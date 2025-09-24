@@ -211,7 +211,9 @@ body {
 
 .player__controls {
   display: flex;
-  justify-self: center;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
   &__play,
   &__pause {
     display: none;
