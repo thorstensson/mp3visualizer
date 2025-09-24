@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import DemoPage from '@/views/DemoPage.vue';
+import ViewDemoPage from "@/components/views/ViewDemoPage.vue";
 </script>
 
 <template>
-  <DemoPage />
+  <ViewDemoPage />
 </template>
 
 <style lang="scss">

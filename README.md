@@ -1,16 +1,23 @@
-![Static Badge](https://img.shields.io/badge/Vue-3.5.13-green) 
-
-![Static Badge](https://img.shields.io/badge/Typescript-5.6.3-navy)
-
 ![Static Badge](https://img.shields.io/badge/Composition%20API-orange)
 
-# Audio Player - Vue - TS - Web Audio API
+# Audio Player. Amazon S3 + Web Audio API + P5.js
 
-Here is the compact version of the mp3 player that I first posted @ https://github.com/thorstensson/audio-player-vue-ts :penguin:
+A compact mp3 player with audio visualization using the Web Audio API and P5.js. The music tracks are from artists I love listening to and meet CC license standards; no copyrighted material.
+
+I've been absent from GitHub for a while, but I'm back. In a sweltering Barcelona summer, I've been busy working on my portfolio, a quite ambitious project that I'm proud of. Coming soon to a repo and URL near you. As a side effect, I'm also updating some linked labs.
+
+## Tech Stack
+
+- Vue 3
+- Typescript
+- Composition API
+- Web Audio API
+- P5.js
+- Amazon S3
 
 ## Demo
 
-👉 Netlify: https://compactaudio.netlify.app/
+👉 https://mp3visualizer.thomasthorstensson.com
 
 ## Run Locally
 
@@ -23,7 +30,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd audio-player-vue-ts
 ```
 
 Install dependencies
