@@ -4,16 +4,24 @@ import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue";
 </script>
 
 <template>
-  <div class="lab-wrapper">
-    <MediaAudioPlayer />
+  <div class="page-container">
+    <div class="lab-wrapper">
+      <MediaAudioPlayer />
+    </div>
+    <CommonFooter />
   </div>
-  <CommonFooter />
 </template>
 
 <style lang="scss" scoped>
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .lab-wrapper {
   display: flex;
-  min-height: calc(100vh - 100px);
+  flex: 1;
   align-items: center;
   justify-content: center;
 }
