@@ -182,7 +182,9 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-#p5-js {
+.p5-js {
+  width: 400px;
+  height: 400px;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;

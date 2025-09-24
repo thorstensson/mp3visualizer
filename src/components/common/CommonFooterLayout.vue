@@ -15,5 +15,6 @@ const slots = useSlots();
   font-family: $sans-text;
   font-size: 16px;
   color: $accent2;
+  user-select: none;
 }
 </style>

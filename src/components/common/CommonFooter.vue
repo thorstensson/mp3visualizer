@@ -17,7 +17,5 @@ import CommonFooterLayout from "@/components/common/CommonFooterLayout.vue";
   justify-content: space-between;
   height: 100px;
   padding: 0 $page-hpad $page-vpad $page-hpad;
-  font-family: $sans-text;
-  font-weight: 400;
 }
 </style>

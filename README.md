@@ -6,6 +6,8 @@ A compact mp3 player with audio visualization using the Web Audio API and P5.js.
 
 I've been absent from GitHub for a while, but I'm back. In a sweltering Barcelona summer, I've been busy working on my portfolio, a quite ambitious project that I'm proud of. Coming soon to a repo and URL near you. As a side effect, I'm also updating some linked labs.
 
+:penguin: T.
+
 ## Tech Stack
 
 - Vue 3
