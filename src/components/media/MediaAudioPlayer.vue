@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useEventListener, type MaybeRef } from "@vueuse/core";
+import { useEventListener, type MaybeRef } from "@vueuse/core"
 import {
   ref,
   useTemplateRef,
@@ -7,30 +7,30 @@ import {
   onMounted,
   computed,
   provide,
-} from "vue";
+} from "vue"
 import {
   PlayIcon,
   PauseIcon,
   ChevronRightIcon,
   ChevronLeftIcon,
-} from "@heroicons/vue/24/solid";
+} from "@heroicons/vue/24/solid"
 
-import AudioVisualizer from "./MediaAudioVisualizer.vue";
-import { useStoreRef } from "@/composable/useStoreRef";
+import AudioVisualizer from "./MediaAudioVisualizer.vue"
+import { useStoreRef } from "@/composable/useStoreRef"
 
-const spectrum = useTemplateRef("spectrum");
-const audioEl = useTemplateRef("audio-element");
+const spectrum = useTemplateRef("spectrum")
+const audioEl = useTemplateRef("audio-element")
 
 // Provide audioEl to child components
-provide("audioEl", audioEl);
+provide("audioEl", audioEl)
 
-const trackTime = ref<string>("00:00");
-const trackDuration = ref<string>("00.00");
-const trackIndex = ref<number>(0);
-const currentTrack = ref<string>("");
-const isPlaying = ref<boolean>(false);
+const trackTime = ref<string>("00:00")
+const trackDuration = ref<string>("00.00")
+const trackIndex = ref<number>(0)
+const currentTrack = ref<string>("")
+const isPlaying = ref<boolean>(false)
 
-const PATH = import.meta.env.VITE_MP3_URL;
+const PATH = import.meta.env.VITE_MP3_URL
 
 //Add tracks here; no plans to make a DOM playlist
 const playlist = reactive([
@@ -39,53 +39,53 @@ const playlist = reactive([
   { artist: "ashess", track: "ashess - only you (Original Mix).mp3" },
 
   { artist: "Sky_s Memoirs", track: "Sky_s Memoirs - Nova (Original Mix).mp3" },
-]);
+])
 
 // Check for remaining tracks
 const ifTrackNext = computed(() => {
-  return trackIndex.value < playlist.length - 1;
-});
+  return trackIndex.value < playlist.length - 1
+})
 
 const ifTrackPrev = computed(() => {
-  return trackIndex.value > 0;
-});
+  return trackIndex.value > 0
+})
 
 // Check for current track
 const currTrack = computed(() => {
-  return playlist[trackIndex.value].track;
-});
+  return playlist[trackIndex.value].track
+})
 
 const togglePlay = () => {
-  isPlaying.value = !isPlaying.value;
+  isPlaying.value = !isPlaying.value
   if (isPlaying.value && audioEl.value) {
-    playTrack();
+    playTrack()
   } else if (audioEl.value) {
-    audioEl.value.pause();
+    audioEl.value.pause()
   }
-};
+}
 
 // For previous and next we need to know if track is playing when we press them
 const nextTrack = () => {
   if (ifTrackNext.value && !isPlaying.value) {
-    trackIndex.value++;
-    currentTrack.value = currTrack.value;
+    trackIndex.value++
+    currentTrack.value = currTrack.value
   } else if (ifTrackNext.value) {
-    isPlaying.value = true;
-    trackIndex.value++;
-    playTrack();
+    isPlaying.value = true
+    trackIndex.value++
+    playTrack()
   }
-};
+}
 
 const prevTrack = () => {
   if (ifTrackPrev.value && !isPlaying.value) {
-    trackIndex.value--;
-    currentTrack.value = currTrack.value;
+    trackIndex.value--
+    currentTrack.value = currTrack.value
   } else if (ifTrackPrev.value) {
-    isPlaying.value = true;
-    trackIndex.value--;
-    playTrack();
+    isPlaying.value = true
+    trackIndex.value--
+    playTrack()
   }
-};
+}
 
 const playTrack = () => {
   // Vueuse, easy cancel. oncanplaythrough does not work on mobile, loadedmetadata does???
@@ -93,55 +93,53 @@ const playTrack = () => {
     audioEl.value as unknown as MaybeRef,
     "loadedmetadata",
     () => {
-      audioEl.value?.play();
-      cancelcan();
+      audioEl.value?.play()
+      cancelcan()
     }
-  );
+  )
   // Synchronous, so we do this after adding event
-  isPlaying.value = true;
-  audioEl.value!.currentTime = 0;
-  currentTrack.value = currTrack.value;
-  audioEl.value?.load();
-};
+  isPlaying.value = true
+  audioEl.value!.currentTime = 0
+  currentTrack.value = currTrack.value
+  audioEl.value?.load()
+}
 
 // E from v-on listener
 const timeUpdate = () => {
-  setTimes();
-};
+  setTimes()
+}
 
 // Times, leaving this in, in case you want to use
 const setTimes = () => {
-  const m = ("0" + Math.floor((audioEl.value!.currentTime / 60) % 60)).slice(
-    -2
-  );
-  const s = ("0" + Math.floor(audioEl.value!.currentTime % 60)).slice(-2);
-  trackTime.value = `${m}:${s}`;
-};
+  const m = ("0" + Math.floor((audioEl.value!.currentTime / 60) % 60)).slice(-2)
+  const s = ("0" + Math.floor(audioEl.value!.currentTime % 60)).slice(-2)
+  trackTime.value = `${m}:${s}`
+}
 
 // E from v-on listener, leaving this in, in case you want to use
 const durationUpdate = () => {
-  const m = ("0" + Math.floor((audioEl.value!.duration / 60) % 60)).slice(-2);
-  const s = ("0" + Math.floor(audioEl.value!.duration % 60)).slice(-2);
-  trackDuration.value = `${m}:${s}`;
-};
+  const m = ("0" + Math.floor((audioEl.value!.duration / 60) % 60)).slice(-2)
+  const s = ("0" + Math.floor(audioEl.value!.duration % 60)).slice(-2)
+  trackDuration.value = `${m}:${s}`
+}
 
 const onTrackEnded = () => {
   if (ifTrackNext.value && spectrum.value) {
-    trackIndex.value++;
-    playTrack();
+    trackIndex.value++
+    playTrack()
   } else if (audioEl.value && spectrum.value) {
-    isPlaying.value = false;
-    trackIndex.value = 0;
-    audioEl.value.pause();
-    audioEl.value.currentTime = 0;
-    currentTrack.value = currTrack.value;
+    isPlaying.value = false
+    trackIndex.value = 0
+    audioEl.value.pause()
+    audioEl.value.currentTime = 0
+    currentTrack.value = currTrack.value
   }
-};
+}
 onMounted(() => {
-  const { addElem } = useStoreRef();
-  addElem("audioEl", audioEl);
-  currentTrack.value = currTrack.value;
-});
+  const { addElem } = useStoreRef()
+  addElem("audioEl", audioEl)
+  currentTrack.value = currTrack.value
+})
 </script>
 
 <template>
@@ -186,7 +184,14 @@ onMounted(() => {
         </ChevronRightIcon>
       </div>
       <div class="player__info">
-        <span class="player__info__text">{{ playlist[trackIndex].artist }} - {{ playlist[trackIndex].track.replace('.mp3', '').replace(playlist[trackIndex].artist + ' - ', '') }}</span>
+        <span class="player__info__text"
+          >{{ playlist[trackIndex].artist }} -
+          {{
+            playlist[trackIndex].track
+              .replace(".mp3", "")
+              .replace(playlist[trackIndex].artist + " - ", "")
+          }}</span
+        >
       </div>
     </div>
   </div>
