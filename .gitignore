@@ -31,3 +31,7 @@ coverage
 
 *.env
 .env
+
+# Windows system files
+*.ini
+Desktop.ini

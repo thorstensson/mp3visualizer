@@ -10,6 +10,10 @@ export default defineConfig({
     vue(),
     // vueDevTools(), // Disabled for cleaner demo
   ],
+  server: {
+    host: true, // This allows external connections
+    port: 5173, // Default Vite port
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

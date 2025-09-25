@@ -17,6 +17,7 @@ import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue";
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-height: 100dvh; /* Use dynamic viewport height for better mobile support */
 }
 
 .lab-wrapper {
@@ -25,6 +26,7 @@ import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue";
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - 50px); // Ensure minimum height minus footer height
+  min-height: calc(100dvh - 50px); /* Use dynamic viewport height for better mobile support */
 }
 
 .demo-txt {
