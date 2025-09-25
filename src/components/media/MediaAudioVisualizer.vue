@@ -20,7 +20,7 @@ const audioEl = inject<{ value: HTMLAudioElement | null }>("audioEl")
  * Create Web Audio API analyser for P5.js visualization
  */
 const createAnalyserData = () => {
-  // Check if audio element exists and is valid
+  // Check if audio element exists and is validl
   if (!audioEl?.value || !(audioEl.value instanceof HTMLMediaElement)) {
     console.warn("Audio element not available yet")
     return false

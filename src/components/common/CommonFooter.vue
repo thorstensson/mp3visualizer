@@ -15,7 +15,7 @@ import CommonFooterLayout from "@/components/common/CommonFooterLayout.vue";
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  height: 100px;
+  height: 50px;
   padding: 0 $page-hpad $page-vpad $page-hpad;
 }
 </style>

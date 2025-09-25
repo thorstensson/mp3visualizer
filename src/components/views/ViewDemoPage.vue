@@ -24,6 +24,7 @@ import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue";
   flex: 1;
   align-items: center;
   justify-content: center;
+  min-height: calc(100vh - 50px); // Ensure minimum height minus footer height
 }
 
 .demo-txt {
