@@ -1,5 +1,10 @@
 ![Static Badge](https://img.shields.io/badge/Composition%20API-orange)
 
+<img width="600" height="600" alt="Image" src="https://github.com/user-attachments/assets/7423f02e-fb37-4eda-82ed-86561f71123b" />
+
+<br/>
+<br/>
+
 # Audio Player. Amazon S3 + Web Audio API + P5.js
 
 A compact mp3 player with audio visualization using the Web Audio API and P5.js. The music tracks are from artists I love listening to and meet CC license standards; no copyrighted material.

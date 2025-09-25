@@ -235,7 +235,7 @@ body {
 
   &__play:hover,
   &__pause:hover {
-    color: $accent1;
+    color: $accent2;
   }
 
   &__prev,
@@ -253,7 +253,7 @@ body {
 
   &__next:hover,
   &__prev:focus {
-    color: $accent1;
+    color: $accent2;
   }
 }
 
