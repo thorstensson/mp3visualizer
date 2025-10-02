@@ -142,6 +142,15 @@ const stopVisualization = () => {
 }
 
 onMounted(() => {
+  // Suppress p5.js PI constant redeclaration warnings in Chrome console
+  const originalWarn = console.warn
+  console.warn = (...args) => {
+    const message = args[0]?.toString() || ""
+    if (message.includes("PI") && message.includes("redeclared")) {
+      return // Skip PI redeclaration warnings
+    }
+    originalWarn.apply(console, args)
+  }
   // Create P5.js instance
   if (p5Container.value) {
     p5Instance = new p5(sketch, p5Container.value)
