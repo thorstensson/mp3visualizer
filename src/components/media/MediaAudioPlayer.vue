@@ -228,6 +228,10 @@ body {
     cursor: pointer;
     transition: color 0.3s ease-in-out;
 
+    /* Prevent focus outline on touch devices */
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+
     &--show {
       display: block;
     }
@@ -245,6 +249,10 @@ body {
     color: $accent1;
     cursor: pointer;
     transition: color 0.3s ease-in-out;
+
+    /* Prevent focus outline on touch devices */
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 
     &--end {
       opacity: 0.5;

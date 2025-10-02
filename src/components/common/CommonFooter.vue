@@ -1,24 +1,32 @@
 <script setup lang="ts">
-import CommonFooterLayout from "@/components/common/CommonFooterLayout.vue";
+import CommonFooterLayout from "@/components/common/CommonFooterLayout.vue"
 </script>
 
 <template>
   <div class="footer-wrapper">
     <CommonFooterLayout>
-      <template #social> S3 + Web Audio API + P5.js </template>
+      <template #info> Vue3 + S3 + Web Audio API + P5.js </template>
+      <template #link
+        ><a href="https://github.com/thorstensson/mp3visualizer" target="_blank"
+          >GitHub repo</a
+        ></template
+      >
     </CommonFooterLayout>
   </div>
 </template>
 
 <style lang="scss" scoped>
+a {
+  text-decoration: underline;
+}
 .footer-wrapper {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   height: 50px;
-  padding: 0 $page-hpad $page-vpad $page-hpad;
+  padding: 0 32px;
   flex-shrink: 0; /* Prevent footer from shrinking */
-  
+
   // Ensure footer is always visible on mobile
   @media (max-width: 768px) {
     position: relative;

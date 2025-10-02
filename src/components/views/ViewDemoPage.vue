@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CommonFooter from "@/components/common/CommonFooter.vue";
-import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue";
+import CommonFooter from "@/components/common/CommonFooter.vue"
+import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue"
 </script>
 
 <template>
@@ -18,6 +18,13 @@ import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue";
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh; /* Use dynamic viewport height for better mobile support */
+  background: repeating-radial-gradient(
+    circle,
+    $primary,
+    $primary 20px,
+    $accent3 20px,
+    $accent3 21px
+  );
 }
 
 .lab-wrapper {
@@ -26,7 +33,10 @@ import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue";
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - 50px); // Ensure minimum height minus footer height
-  min-height: calc(100dvh - 50px); /* Use dynamic viewport height for better mobile support */
+  min-height: calc(
+    100dvh - 50px
+  ); /* Use dynamic viewport height for better mobile support */
+
 }
 
 .demo-txt {
