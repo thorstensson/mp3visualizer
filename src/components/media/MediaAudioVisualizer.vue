@@ -194,6 +194,6 @@ onUnmounted(() => {
 }
 
 :deep(.p5Canvas) {
-  background-color: $primary !important;
+  background-color: transparent !important;
 }
 </style>
