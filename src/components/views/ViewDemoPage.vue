@@ -18,13 +18,6 @@ import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue"
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh; /* Use dynamic viewport height for better mobile support */
-  background: repeating-radial-gradient(
-    circle,
-    $primary,
-    $primary 20px,
-    $accent3 20px,
-    $accent3 21px
-  );
 }
 
 .lab-wrapper {
