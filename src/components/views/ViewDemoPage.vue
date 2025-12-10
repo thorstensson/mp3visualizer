@@ -8,7 +8,11 @@ import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue"
     <div class="lab-wrapper">
       <MediaAudioPlayer />
     </div>
-    <CommonFooter />
+    <CommonFooter
+      info="© 2025 Thomas Thorstensson •"
+      link="https://github.com/thorstensson"
+      linkLabel="Repository"
+    />
   </div>
 </template>
 
@@ -29,15 +33,5 @@ import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue"
   min-height: calc(
     100dvh - 50px
   ); /* Use dynamic viewport height for better mobile support */
-
-}
-
-.demo-txt {
-  color: $secondary;
-  font-family: $sans-text;
-  font-size: 100px;
-  font-weight: 600;
-  position: absolute;
-  z-index: 10;
 }
 </style>

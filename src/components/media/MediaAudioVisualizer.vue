@@ -71,9 +71,9 @@ const sketch = (p: p5) => {
     p.clear() // Use clear() to make background transparent so CSS background shows
 
     if (isPlaying && analyser.value) {
-      analyser.value.getByteFrequencyData(dataArray)
+      analyser.value.getByteFrequencyData(dataArray as any)
 
-      // Calculate average amplitude for main circle size
+      // Calculate average amplitude forl main circle size
       let sum = 0
       for (let i = 0; i < bufferLength; i++) {
         sum += dataArray[i]
