@@ -11,7 +11,7 @@ import MediaAudioPlayer from "@/components/media/MediaAudioPlayer.vue"
     <CommonFooter
       info="© 2025 Thomas Thorstensson •"
       link="https://github.com/thorstensson"
-      linkLabel="Repository"
+      linkLabel="GitHub"
     />
   </div>
 </template>
