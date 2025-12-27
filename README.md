@@ -20,7 +20,7 @@ I've been absent from GitHub for a while, but I'm back. In a sweltering Barcelon
 - Composition API
 - Web Audio API
 - P5.js
-- Amazon S3
+- Cloudflare R2
 
 ## Demo
 

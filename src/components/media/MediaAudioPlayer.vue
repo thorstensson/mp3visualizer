@@ -150,8 +150,8 @@ onMounted(() => {
 
     <div class="player">
       <audio
+        :src="`${PATH}/mp3/${currentTrack}`"
         type="audio/mp3"
-        :src="`${PATH}/${currentTrack}`"
         preload="auto"
         v-on:timeupdate="timeUpdate"
         v-on:durationchange="durationUpdate"
